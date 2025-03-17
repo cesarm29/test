@@ -280,7 +280,7 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
               {items.map((item, index) => (
                 <tr key={index}>
                   <td className="text-center align-middle">
-                    <div style={{ position: "relative", zIndex: 999 }}>
+                    <div style={{ position: "relative", zIndex: 1 }}>
                       <Creatable
                         value={
                           item.descripcion
@@ -308,6 +308,7 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
                         isSearchable
                         placeholder={t("Buscar o escribir descripción")}
                         menuPortalTarget={document.body}
+                        menuPlacement="auto"
                       />
                     </div>
                   </td>
