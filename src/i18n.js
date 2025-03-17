@@ -19,6 +19,10 @@ const resources = {
       "Error": "Error",
       "No autorizado": "Unauthorized",
       "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.": "Your session has expired. Please log in again.",
+      "Iniciar sesión": "Login",
+      "Correo electrónico": "Email",
+      "Contraseña": "Password",
+      "Error de inicio de sesión, verifica tus credenciales": "Login error, check your credentials"
     },
   },
   es: {
@@ -38,6 +42,10 @@ const resources = {
       "Error": "Error",
       "No autorizado": "No autorizado",
       "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.": "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.",
+      "Iniciar sesión": "Iniciar sesión",
+      "Correo electrónico": "Correo electrónico",
+      "Contraseña": "Contraseña",
+      "Error de inicio de sesión, verifica tus credenciales": "Error de inicio de sesión, verifica tus credenciales"
     },
   },
 };

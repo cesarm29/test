@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Creatable from "react-select/creatable";
+import { useTranslation } from "react-i18next";
 
 interface FormularioAlbaranProps {
   token: string | null;
@@ -34,6 +35,7 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [hasFetchedData, setHasFetchedData] = useState<boolean>(false);
 
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -62,8 +64,8 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
         if (error.response && error.response.status === 401) {
           Swal.fire({
             icon: "error",
-            title: "No autorizado",
-            text: "Tu sesión ha expirado. Por favor, inicia sesión nuevamente.",
+            title: t("No autorizado"),
+            text: t("Tu sesión ha expirado. Por favor, inicia sesión nuevamente."),
           }).then(() => {
             navigate("/");
           });
@@ -140,8 +142,8 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
       ) {
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Todos los campos deben ser válidos",
+          title: t("Error"),
+          text: t("Todos los campos deben ser válidos"),
         });
         return;
       }
@@ -168,9 +170,9 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
         const albaran = response.datos;
         Swal.fire({
           icon: "success",
-          title: "Albarán registrado",
-          text: `Albarán registrado con el número ${albaran.id}.`,
-          footer: `Fecha: ${albaran.fecha} - Cliente: ${albaran.cliente.nombre}`,
+          title: t("Albarán registrado"),
+          text: `${t("Albarán registrado con el número")} ${albaran.id}.`,
+          footer: `${t("Fecha")}: ${albaran.fecha} - ${t("Cliente")}: ${albaran.cliente.nombre}`,
         }).then(() => {
           setItems([
             {
@@ -193,57 +195,57 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
       } else {
         Swal.fire({
           icon: "error",
-          title: "Error",
-          text: "Hubo un error al registrar el albarán",
+          title: t("Error"),
+          text: t("Hubo un error al registrar el albarán"),
         });
       }
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: "Hubo un error al registrar el albarán",
+        title: t("Error"),
+        text: t("Hubo un error al registrar el albarán"),
       });
     }
   };
 
   return (
     <div className="m-5">
-      <h1 className="text-center mb-4">Formulario de Albarán</h1>
+      <h1 className="text-center mb-4">{t("Formulario de Albarán")}</h1>
       <Form>
         <Row className="mb-4">
           <Col>
             <Form.Group controlId="centroOrigen">
-              <Form.Label>Centro Origen</Form.Label>
+              <Form.Label>{t("Centro Origen")}</Form.Label>
               <Form.Control as="select">
-                <option>Centro Origen 1</option>
-                <option>Centro Origen 2</option>
-                <option>Centro Origen 3</option>
+                <option>{t("Centro Origen 1")}</option>
+                <option>{t("Centro Origen 2")}</option>
+                <option>{t("Centro Origen 3")}</option>
               </Form.Control>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="centroDestino">
-              <Form.Label>Centro Destino</Form.Label>
+              <Form.Label>{t("Centro Destino")}</Form.Label>
               <Form.Control as="select">
-                <option>Centro Destino 1</option>
-                <option>Centro Destino 2</option>
-                <option>Centro Destino 3</option>
+                <option>{t("Centro Destino 1")}</option>
+                <option>{t("Centro Destino 2")}</option>
+                <option>{t("Centro Destino 3")}</option>
               </Form.Control>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="almacen">
-              <Form.Label>Almacén</Form.Label>
+              <Form.Label>{t("Almacén")}</Form.Label>
               <Form.Control as="select">
-                <option>Almacén 1</option>
-                <option>Almacén 2</option>
-                <option>Almacén 3</option>
+                <option>{t("Almacén 1")}</option>
+                <option>{t("Almacén 2")}</option>
+                <option>{t("Almacén 3")}</option>
               </Form.Control>
             </Form.Group>
           </Col>
           <Col>
             <Form.Group controlId="fecha">
-              <Form.Label>Fecha</Form.Label>
+              <Form.Label>{t("Fecha")}</Form.Label>
               <Form.Control type="date" />
             </Form.Group>
           </Col>
@@ -260,18 +262,18 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
           <Table striped bordered hover responsive>
             <thead>
               <tr>
-                <th className="text-center align-middle">Descripción</th>
-                <th className="text-center align-middle">Cantidad</th>
-                <th className="text-center align-middle">Precio</th>
-                <th className="text-center align-middle">% Descuento</th>
-                <th className="text-center align-middle">Subtotal</th>
-                <th className="text-center align-middle">Base Imponible</th>
-                <th className="text-center align-middle">% IVA</th>
-                <th className="text-center align-middle">Importe IVA</th>
-                <th className="text-center align-middle">Recargo</th>
-                <th className="text-center align-middle">Importe Recargo</th>
-                <th className="text-center align-middle">Total</th>
-                <th className="text-center align-middle">Acciones</th>
+                <th className="text-center align-middle">{t("Descripción")}</th>
+                <th className="text-center align-middle">{t("Cantidad")}</th>
+                <th className="text-center align-middle">{t("Precio")}</th>
+                <th className="text-center align-middle">{t("% Descuento")}</th>
+                <th className="text-center align-middle">{t("Subtotal")}</th>
+                <th className="text-center align-middle">{t("Base Imponible")}</th>
+                <th className="text-center align-middle">{t("% IVA")}</th>
+                <th className="text-center align-middle">{t("Importe IVA")}</th>
+                <th className="text-center align-middle">{t("Recargo")}</th>
+                <th className="text-center align-middle">{t("Importe Recargo")}</th>
+                <th className="text-center align-middle">{t("Total")}</th>
+                <th className="text-center align-middle">{t("Acciones")}</th>
               </tr>
             </thead>
             <tbody>
@@ -304,7 +306,7 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
                         }))}
                         isClearable
                         isSearchable
-                        placeholder="Buscar o escribir descripción"
+                        placeholder={t("Buscar o escribir descripción")}
                         menuPortalTarget={document.body}
                       />
                     </div>
@@ -406,7 +408,7 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
                     <Button
                       variant="danger"
                       onClick={() => deleteItem(index)}
-                      title="Eliminar ítem"
+                      title={t("Eliminar ítem")}
                     >
                       <div>
                         <FaTrash />
@@ -420,19 +422,19 @@ const FormularioAlbaran: React.FC<FormularioAlbaranProps> = ({ token }) => {
         )}
 
         <Button variant="primary" onClick={addItem} className="mb-3">
-          Agregar ítem
+          {t("Agregar ítem")}
         </Button>
       </Form>
 
       <div className="mt-4 d-flex justify-content-end">
         <div className="mr-3">
           <h3 className="px-5">
-            Total del albarán:{" "}
+            {t("Total del albarán")}:{" "}
             {items.reduce((acc, item) => acc + item.total, 0).toFixed(2)}
           </h3>
         </div>
         <Button variant="success" onClick={handleSubmit}>
-          Guardar Albarán
+          {t("Guardar Albarán")}
         </Button>
       </div>
     </div>
